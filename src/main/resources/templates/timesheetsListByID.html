@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>TimeSheets list by StaffID</h1>
+    <!-- <h1>Name = <span th:text="${name}"> </h1>
+    <h1>Age = <span th:text="${age}"> </h1> -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>StaffID</th>
+            <th>Day OFF</th>
+            <th>Day ON</th>
+            <th>Month</th>
+            <th>Year</th>
+        </tr>
+            <tr th:each="timesheet: ${timesheets}">
+                <td th:text="${timesheet.timeshID}"></td>
+                <td th:text="${timesheet.staffID}"></td>
+                <td th:text="${timesheet.day_off}"></td>
+                <td th:text="${timesheet.day_on}"></td>
+                <td th:text="${timesheet.mon}"></td>
+                <td th:text="${timesheet.yea}"></td>
+            </tr>
+    </table>
+</body>
+</html>
