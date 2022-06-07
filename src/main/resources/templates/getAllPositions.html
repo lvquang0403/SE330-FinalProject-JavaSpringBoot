@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <script>
+        function validation(event) {
+            posID = document.getElementById('posID');
+            value = posID.value;
+            temp = (value.length==6);
+            if(!temp){
+                event.preventDefault();
+                alert("Number character of PosID must equal 6 !!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Position list</h1>
+    <!-- <h1>Name = <span th:text="${name}"> </h1>
+    <h1>Age = <span th:text="${age}"> </h1> -->
+        <div class="list-position">
+            <table>
+                <tr>
+                    <th>PosID</th>
+                    <th>Name Position</th>
+                </tr>
+                <tr>
+                    <tr th:each="position: ${positions}">
+                        <td th:text="${position.posID}"></td>
+                        <td th:text="${position.name_Pos}"></td>
+                        <td><form th:action="@{positions/deletePosition/{posID} (posID = ${position.posID})}" method="POST">
+                            <input type="submit" value="Delete" />
+                        </form>
+                    </tr>
+                </tr>
+            </table>
+        </div>
+        <div class="insert-position">
+            <h1>Insert new Position</h1>
+            <form th:action="@{positions}" th:object="${newPosition}" method="POST">
+                <table>
+                    <tr>
+                        <th>Position ID</th>
+                        <th>Name Position</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="posID" th:field="*{posID}"></td>
+                        <td><input type="text" id="name_Pos" th:field="*{name_Pos}"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><input type="submit" value="Create" id="submit" onclick="validation(event)"></td>
+                    </tr>
+                </table>
+                <div class="error" th:text="${error}"></div>
+            </form>
+        </div>
+    <a href=""><h2>Back to menu</h2></a>
+</body>
+</html>

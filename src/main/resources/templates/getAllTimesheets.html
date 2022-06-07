@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <script>
+        function validation(event) {
+            timeshID = document.getElementById('timeshID');
+            value = timeshID.value;
+            temp = (value.length==6);
+            if(!temp){
+                event.preventDefault();
+                alert("Number character of timeshID must equal 6 !!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>TimeSheets list</h1>
+    <!-- <h1>Name = <span th:text="${name}"> </h1>
+    <h1>Age = <span th:text="${age}"> </h1> -->
+        <div class="list-timesheets">
+            <table>
+                <tr>
+                    <th>TimeshID</th>
+                    <th>StaffID</th>
+                    <th>Day off</th>
+                    <th>Day on</th>
+                    <th>Month</th>
+                    <th>Year</th>
+                </tr>
+                <tr>
+                    <tr th:each="timesheet: ${timesheets}">
+                        <td th:text="${timesheet.timeshID}"></td>
+                        <td th:text="${timesheet.staffID}" ></td>
+                        <td th:text="${timesheet.day_off}"></td>
+                        <td th:text="${timesheet.day_on}"></td>
+                        <td th:text="${timesheet.mon}"></td>
+                        <td th:text="${timesheet.yea}"></td>
+                        <td><form th:action="@{timesheet/deleteTimesheet/{timeshID} (timeshID = ${timesheet.timeshID})}" method="POST">
+                            <input type="submit" value="Delete" />
+                        </form>
+                    </tr>
+                </tr>
+            </table>
+        </div>
+        <div class="list-timesheets">
+            <h1>Insert new Timesheet</h1>
+            <form th:action="@{timesheets}" th:object="${newTimesheet}" method="POST">
+                <table>
+                    <tr>
+                        <th>TimeshID</th>
+                        <th>StaffID</th>
+                        <th>Day off</th>
+                        <th>Day on</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="timeshID" th:field="*{timeshID}"></td>
+                        <td><select th:field = "*{staffID}" id="staffID">
+                            <option th:each="staffID : ${staffIDs}" th:value="${staffID}" th:text="${staffID}"></option>
+                        </select>
+                        </td>
+                        <td><input type="number" min="0" step="1" th:field="*{day_off}"></td>
+                        <td><input type="number" min="0" step="1" th:field="*{day_on}"></td>
+                        <td><input type="number" min="1" max="12" step="1" th:field="*{mon}"></td>
+                        <td><input type="number" min="1980" max="2023" step="1" th:field="*{yea}"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"><input type="submit" value="Create" id="submit" onclick="validation(event)"></td>
+                    </tr>
+                </table>
+                <div class="error" th:text="${error}"></div>
+            </form>
+        </div>
+    <a href=""><h2>Back to menu</h2></a>
+</body>
+</html>

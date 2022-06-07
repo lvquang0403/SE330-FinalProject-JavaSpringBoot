@@ -21,6 +21,7 @@
             <th>Phone</th>
             <th>PosID</th>
             <th>RoomID</th>
+            <th></th>
         </tr>
         <tr>
             <tr th:each="staff: ${staffs}">
@@ -36,12 +37,13 @@
                 <td th:text="${staff.phone}"></td>
                 <td th:text="${staff.posID}" ></td>
                 <td th:text="${staff.roomID}"></td>
-                <td><form action="https://google.com">
-                    <input type="button" value="Delete" />
-                </form>
-                </td>
+                <td><a th:href="@{http://localhost:8080/staffs/editAtbOfStaff/{staffID} (staffID=${staff.staffID})}">Edit Staff</a></td>
+                <td><form th:action="@{staffs/deleteStaff/{staffID} (staffID = ${staff.staffID})}" method="post">
+                    <input type="submit" value="Delete">
+                </form></td>
             </tr>
         </tr>
     </table>
+    <h2><a href="staffs/insertStaff">Insert new Staff</a></h2>
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert new Staff</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <script>
+        function validateName(event) {
+            roomID = document.getElementById('roomID');
+            value = roomID.value;
+            temp = (value.length==6);
+            if(!temp){
+                event.preventDefault();
+                alert("Number character of RoomID must equal 6 !!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Insert new Staff</h1>
+    <form th:action="@{/rooms/insertRoom}" th:object="${room}" method="POST">
+        <table>
+            <tr>
+                <th>RoomID</th>
+                <th>Name Room</th>
+            </tr>
+            <tr>
+                <td><input type="text" th:field="*{roomID}" id="roomID"></td>
+                <td><input type="text" th:field="*{name_room}" id="name_room"></td>
+            </tr>
+        </table>
+        <div><input type="submit" value="Create" id="submit" onclick="validateName(event)"></div>
+    </form>
+    <div class="error" th:text="${error}"></div>
+    <div class="back-to-staffs"><a href="http://localhost:8080/rooms">Back to Room list Page</a></div>
+</body>
+</html>

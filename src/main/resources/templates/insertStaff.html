@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert new Staff</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <script>
+        function validateName(event) {
+            result=[]
+            const notify =["invalid StaffID !!","invalid full_name!!", "number character of PosID must equal 6 !!", "number character of roomID must equal 6 !!"]
+            id = document.getElementById('staffID');
+            value = id.value;
+            temp = (value.length==6);
+            result.push(temp)
+            name = document.getElementById('full-name');
+            value = name.value;
+            temp = /^[a-zA-Z ]+$/.test(value);
+            result.push(temp)
+            //
+            posID = document.getElementById('posID');
+            value = posID.value;
+            temp = (value.length==6);
+            result.push(temp)
+            //
+            roomID = document.getElementById('roomID');
+            value = roomID.value;
+            temp = (value.length==6);
+            result.push(temp);
+            console.log(result);
+            noti = "";
+            for (let index = 0; index < result.length; index++) {
+                if(result[index]==0) {
+                    noti+=(notify[index]+"\n");
+                    event.preventDefault();
+                }
+            }
+            if(noti!==""){
+
+                alert(noti);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Insert new Staff</h1>
+    <form th:action="@{/staffs/insertStaff}" th:object="${staff}" method="POST">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Birthday</th>
+                <th>Epx</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Position</th>
+                <th>Room</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td><input type="text" th:field="*{staffID}" id="staffID"></td>
+                <td><input type="text" th:field="*{full_name}" id="full-name"></td>
+                <td><select th:field="*{gender}" id="gender">
+                    <option th:value="0">Male</option>
+                    <option th:value="1">Female</option>
+                </select></td>
+                <td><input type="date" th:field="*{bod}" ></td>
+                <td><input type="number" th:field="*{experience}" min="0"></td>
+                <td><input type="text" th:field="*{adr}"></td>
+                <td><input type="text" th:field="*{phone}"></td>
+                <td><select id="posID" th:field="*{posID}">
+                    <option th:each="position : ${positions}" th:value="${position.posID}" th:text="${position.name_Pos}"></option>
+                </select></td>
+                <td><select id="roomID" th:field="*{roomID}">
+                    <option th:each="room : ${rooms}" th:value="${room.roomID}" th:text="${room.name_room}"></option>
+                </select></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="10" id="notify"></td>
+               
+            </tr>
+        </table>
+        <div><input type="submit" value="Create" id="submit" onclick="validateName(event)"></div>
+    </form>
+    <div class="back-to-staffs"><a href="http://localhost:8080/staffs">Back to Staffs list Page</a></div>
+</body>
+</html>
