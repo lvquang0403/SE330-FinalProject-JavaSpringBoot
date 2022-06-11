@@ -23,11 +23,11 @@
     </script>
 </head>
 <body>
-    <h1>TimeSheets list</h1>
+    <h1 style="text-align: center;">TimeSheets list</h1>
     <!-- <h1>Name = <span th:text="${name}"> </h1>
     <h1>Age = <span th:text="${age}"> </h1> -->
         <div class="list-timesheets">
-            <table>
+            <table align="center" cellspacing="0" cellpadding="2" border="1">
                 <tr>
                     <th>TimeshID</th>
                     <th>StaffID</th>
@@ -52,9 +52,9 @@
             </table>
         </div>
         <div class="list-timesheets">
-            <h1>Insert new Timesheet</h1>
+            <h1 style="text-align: center;">Insert new Timesheet</h1>
             <form th:action="@{timesheets}" th:object="${newTimesheet}" method="POST">
-                <table>
+                <table align="center" cellspacing="0" cellpadding="2" border="1">
                     <tr>
                         <th>TimeshID</th>
                         <th>StaffID</th>
@@ -75,12 +75,12 @@
                         <td><input type="number" min="1980" max="2023" step="1" th:field="*{yea}"></td>
                     </tr>
                     <tr>
-                        <td colspan="6"><input type="submit" value="Create" id="submit" onclick="validation(event)"></td>
+                        <td colspan="6" align="center"><input type="submit" value="Create" id="submit" onclick="validation(event)"></td>
                     </tr>
                 </table>
                 <div class="error" th:text="${error}"></div>
             </form>
         </div>
-    <a href=""><h2>Back to menu</h2></a>
+    <a href=""><h2 style="text-align: center;">Back to menu</h2></a>
 </body>
 </html>

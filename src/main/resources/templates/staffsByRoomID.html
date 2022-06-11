@@ -7,10 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>TimeSheets list by StaffID</h1>
+    <h1 style="text-align: center;">TimeSheets list by StaffID</h1>
     <!-- <h1>Name = <span th:text="${name}"> </h1>
     <h1>Age = <span th:text="${age}"> </h1> -->
-    <table>
+    <table align="center" border="1" cellpadding="2" cellspacing="0">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -35,6 +35,6 @@
                 <td th:text="${result.name_room}"></td>
             </tr>
     </table>
-    <div class="back-to-staffs"><a href="http://localhost:8080/staffs">Back to Staffs list Page</a></div>
+    <div class="back-to-staffs" align="center" style="font-weight: bold; font-size: 24px;"><a href="http://localhost:8080/staffs">Back to Staffs list Page</a></div>
 </body>
 </html>

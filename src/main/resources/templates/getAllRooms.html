@@ -7,13 +7,13 @@
     <title></title>
 </head>
 <body>
-    <h1>Room list</h1>
+    <h1 style="text-align: center;">Room list</h1>
     <!-- <h1>Name = <span th:text="${name}"> </h1>
     <h1>Age = <span th:text="${age}"> </h1> -->
-    <table>
+    <table align="center" border="1" cellpadding="2" cellspacing="0">
         <tr>
-            <th>ID</th>
-            <th>Name</th>
+            <th width="100px">ID</th>
+            <th width="300px">Name</th>
         </tr>
         <tr>
             <tr th:each="room: ${rooms}">
@@ -25,7 +25,7 @@
             </tr>
         </tr>
     </table>
-    <td><a href="rooms/insertRoom">Insert a new Room</a></td>
-    <a href=""><h2>Back to menu</h2></a>
+    <td align="center" style="font-size: 20px;"><a href="rooms/insertRoom">Insert a new Room</a></td>
+    <a href=""><h2 style="text-align: center;">Back to menu</h2></a>
 </body>
 </html>

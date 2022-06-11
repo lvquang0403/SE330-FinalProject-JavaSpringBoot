@@ -7,10 +7,10 @@
     <title>Staff list</title>
 </head>
 <body>
-    <h1>Staff list</h1>
+    <h1 style="text-align: center;">Staff list</h1>
     <!-- <h1>Name = <span th:text="${name}"> </h1>
     <h1>Age = <span th:text="${age}"> </h1> -->
-    <table>
+    <table style="text-align: center;" border="1" cellpadding="2" cellspacing="0" align="center">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -23,7 +23,7 @@
             <th>RoomID</th>
             <th></th>
         </tr>
-        <tr>
+        <tr align="center">
             <tr th:each="staff: ${staffs}">
                 <td th:text="${staff.staffID}"></td>
                 <td th:text="${staff.full_name}"></td>
@@ -44,6 +44,6 @@
             </tr>
         </tr>
     </table>
-    <h2><a href="staffs/insertStaff">Insert new Staff</a></h2>
+    <h2 style="text-align: center;"><a href="staffs/insertStaff">Insert new Staff</a></h2>
 </body>
 </html>

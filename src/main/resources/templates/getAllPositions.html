@@ -23,14 +23,14 @@
     </script>
 </head>
 <body>
-    <h1>Position list</h1>
+    <h1 style="text-align: center;">Position list</h1>
     <!-- <h1>Name = <span th:text="${name}"> </h1>
     <h1>Age = <span th:text="${age}"> </h1> -->
         <div class="list-position">
-            <table>
+            <table align="center" cellspacing="0" cellpadding="2" border="1">
                 <tr>
-                    <th>PosID</th>
-                    <th>Name Position</th>
+                    <th width="100px">PosID</th>
+                    <th width="300px">Name Position</th>
                 </tr>
                 <tr>
                     <tr th:each="position: ${positions}">
@@ -44,24 +44,24 @@
             </table>
         </div>
         <div class="insert-position">
-            <h1>Insert new Position</h1>
+            <h1 style="text-align: center;">Insert new Position</h1>
             <form th:action="@{positions}" th:object="${newPosition}" method="POST">
-                <table>
+                <table align="center" cellspacing="0" cellpadding="2" border="1">
                     <tr>
-                        <th>Position ID</th>
-                        <th>Name Position</th>
+                        <th width="100px">Position ID</th>
+                        <th width="300px">Name Position</th>
                     </tr>
                     <tr>
                         <td><input type="text" id="posID" th:field="*{posID}"></td>
                         <td><input type="text" id="name_Pos" th:field="*{name_Pos}"></td>
                     </tr>
                     <tr>
-                        <td colspan="3"><input type="submit" value="Create" id="submit" onclick="validation(event)"></td>
+                        <td colspan="3" align="center"><input type="submit" value="Create" id="submit" onclick="validation(event)"></td>
                     </tr>
                 </table>
                 <div class="error" th:text="${error}"></div>
             </form>
         </div>
-    <a href=""><h2>Back to menu</h2></a>
+    <a href=""><h2 tyle="text-align: center;">Back to menu</h2></a>
 </body>
 </html>

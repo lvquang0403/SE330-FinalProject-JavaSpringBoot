@@ -23,9 +23,9 @@
     </script>
 </head>
 <body>
-    <h1>Insert new Staff</h1>
+    <h1 style="text-align: center;">Insert new Staff</h1>
     <form th:action="@{/rooms/insertRoom}" th:object="${room}" method="POST">
-        <table>
+        <table align="center" border="1" cellpadding="2" cellspacing="0">
             <tr>
                 <th>RoomID</th>
                 <th>Name Room</th>
@@ -35,9 +35,9 @@
                 <td><input type="text" th:field="*{name_room}" id="name_room"></td>
             </tr>
         </table>
-        <div><input type="submit" value="Create" id="submit" onclick="validateName(event)"></div>
+        <div  align="center"><input type="submit" value="Create" id="submit" onclick="validateName(event)"></div>
     </form>
     <div class="error" th:text="${error}"></div>
-    <div class="back-to-staffs"><a href="http://localhost:8080/rooms">Back to Room list Page</a></div>
+    <div class="back-to-staffs" style="text-align: center; font-weight: bold; font-size: 20px;"><a href="http://localhost:8080/rooms">Back to Room list Page</a></div>
 </body>
 </html>
