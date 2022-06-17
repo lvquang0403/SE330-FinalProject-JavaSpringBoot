@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <h1 style="text-align: center;">Detail Salary of Staff <span th:text="${timesheet.staffID}"> </span></h1>
+    <!-- <h1>Name = <span th:text="${name}"> </h1>
+    <h1>Age = <span th:text="${age}"> </h1> -->
+    <table align="center" border="1" cellpadding="2" cellspacing="0">
+        <tr>
+            <th>Salary Payment ID</th>
+            <th>StaffID</th>
+            <th>Month</th>
+            <th>Year</th>
+            <th>Day off</th>
+            <th>Day on</th>
+            <th>Insurance</th>
+            <th>Bonus</th>
+            <th>Actually Received</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td th:text="${salaryPayment.salaryPayID}"></td>
+            <td th:text="${salaryPayment.staffID}"></td>
+            <td th:text="${salaryPayment.mon}"></td>
+            <td th:text="${salaryPayment.yea}"></td>
+            <td th:text="${timesheet.day_off}"></td>
+            <td th:text="${timesheet.day_on}"></td>
+            <td th:text="${salaryPayment.insurance}"></td>
+            <td th:text="${salaryPayment.bonus}"></td>
+            <!-- ${#numbers.formatDecimal(num,3,'POINT',2,'COMMA')} -->
+            <td th:text="${#numbers.formatDecimal(salaryPayment.actReceived,3,'POINT',2,'COMMA')}"></td>
+
+            
+        </tr>
+    </table>
+    <a href="/salary/getSalary"><h2     style="text-align: center;">Back to Salary Menu</h2></a>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script th:inline="javascript">
+        //creat array to store roomID and name_room
+        var allRooms =[new Array(),new Array()];
+        //creat array to store staffID
+        var allStaffID = new Array();
+    /*<![CDATA[*/
+
+    /*[# th:each="room : ${rooms}"]*/
+    <!--/* var l = new google.maps.LatLng(/*[[${page.lat}]]*/, /*[[${page.long}]]*/);*/-->;
+       <!--/* This code will be removed at thymeleaf parsing time! */-->
+        allRooms[0].push(/*[[${room.roomID}]]*/);
+        allRooms[1].push(/*[[${room.name_room}]]*/);
+    /*[/]*/
+    /*[# th:each="staff : ${staffs}"]*/
+       <!--/* This code will be removed at thymeleaf parsing time! */-->
+       allStaffID.push(/*[[${staff.staffID}]]*/);
+    /*[/]*/
+
+    /*]]>*/
+    // creat input tags of option get salary by roomID
+    </script>
+    <style>
+        table {
+            width: 500px;
+            margin: 0 auto;
+        }
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Salary Menu</h1>
+    <!-- <form th:action="@{salary/getSalary/}" method="post"> -->
+        <table>
+            <tr>
+                <th>
+                    <label for="">Choose calculation method</label>
+                    <select name="cal-method" id="cal-method" onchange="addInput()">
+                        <option value="0">None</option>
+                        <option value="1">Get salary of all staffs</option>
+                        <option value="2">Get salary by staffID</option>
+                        <option value="3">Get salary by room</option>
+                    </select>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div id="content-menu-op-1" style="display: none;">
+                        <form th:action="@{/salaryPayment/getAllSalaryPayments}" method="get">
+                            <h2>Get salary all staff</h2>
+                            <input type="submit">
+                        </form>
+                    </div>
+                    <div id="content-menu-op-2" style="display: none;">
+                        <h2>Get by StaffID</h2>
+                        <select id="option-staffID" onchange="addInput()" >
+                                <option th:each="staffID : ${staffIDs}" th:value="${staffID}" th:text="${staffID}"></option>
+                        </select><br>
+                        <div id="submit-op-2"></div>
+                    </div>
+                    <div id="content-menu-op-3" style="display: none;">
+                        <h2>Get by RoomID</h2>
+                        <select id="option-roomID">
+                            <option th:each="roomID : ${roomIDs}" th:value="${roomID}" th:text="${roomID}"></option>
+                        </select><br>
+                        <div id="submit-op-3"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="../">Back to Home</a></td>
+            </tr>
+
+        </table>
+</form>
+<a href="http://localhost:8080/salary/insertSalary"><h2>View all salary basic of staff</h2></a>
+<script>
+    function addInput(){
+    choice = document.getElementById("cal-method").value;
+    console.log(choice)
+    if (choice==2) {
+        document.getElementById('content-menu-op-2').style.display = "block";
+        document.getElementById('content-menu-op-3').style.display = "none";
+        document.getElementById('content-menu-op-1').style.display = "none";
+        value = document.getElementById('option-staffID').value;
+        a = document.createElement('a');
+        a.setAttribute("href", "http://localhost:8080/salaryPayment/getSalaryByStaffID/"+value);
+        a.textContent = "Submit";
+        console.log(a);
+        document.getElementById('submit-op-2').innerHTML=a.outerHTML;
+    } else if (choice == 3){
+        document.getElementById('content-menu-op-3').style.display = "block";
+        document.getElementById('content-menu-op-2').style.display = "none";
+        document.getElementById('content-menu-op-1').style.display = "none";
+        value = document.getElementById('option-roomID').value;
+        a = document.createElement('a');
+        a.setAttribute("href", "http://localhost:8080/salaryPayment/getSalaryPaymentsByRoomID/"+value);
+        a.textContent = "Submit";
+        console.log(a);
+        document.getElementById('submit-op-3').innerHTML=a.outerHTML;
+    }
+    else if(choice == 0){
+        document.getElementById('content-menu-op-3').style.display = "none";
+        document.getElementById('content-menu-op-2').style.display = "none";
+        document.getElementById('content-menu-op-1').style.display = "none";
+    }
+    else{
+        document.getElementById('content-menu-op-2').style.display = "none";
+        document.getElementById('content-menu-op-3').style.display = "none";
+        document.getElementById('content-menu-op-1').style.display = "block";
+    }
+
+
+
+}
+</script>
+</body>
+</html>

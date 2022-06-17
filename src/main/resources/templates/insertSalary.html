@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <script>
+        function validation(event) {
+            salaryID = document.getElementById('salaryID');
+            value = salaryID.value;
+            temp = (value.length==6);
+            if(!temp){
+                event.preventDefault();
+                alert("Number character of SalaryID must equal 6 !!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1 style="text-align: center;">Salary list</h1>
+    <!-- <h1>Name = <span th:text="${name}"> </h1>
+    <h1>Age = <span th:text="${age}"> </h1> -->
+        <div class="list-timesheets">
+            <table align="center" cellspacing="0" cellpadding="2" border="1">
+                <tr>
+                    <th>SalaryID</th>
+                    <th>StaffID</th>
+                    <th>Basic Salary</th>
+                    <th>Applicable Date</th>
+                </tr>
+                <tr>
+                    <tr th:each="salary: ${salaryOfStaffs}">
+                        <td th:text="${salary.salaryID}"></td>
+                        <td th:text="${salary.staffID}" ></td>
+                        <td th:text="${T(com.project.WebApp.model.FormatNumber).formatMoney(salary.basicSalary)}"></td>
+                        <td th:text="${salary.applicableDate}"></td>
+                        <td><form th:action="@{/salary/deleteSalary/{salaryID} (salaryID = ${salary.salaryID})}" method="POST">
+                            <input type="submit" value="Delete" />
+                        </form>
+                    </tr>
+                </tr>
+            </table>
+        </div>
+        <div class="list-timesheets">
+            <h1 style="text-align: center;">Insert new Salary</h1>
+            <form th:action="@{/salary/insertSalary}" th:object="${newSalary}" method="POST">
+                <table align="center" cellspacing="0" cellpadding="2" border="1">
+                    <tr>
+                        <th>SalaryID</th>
+                        <th>StaffID</th>
+                        <th>Basic Salary</th>
+                        <th>Applicable Date</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="salaryID" th:field="*{salaryID}"></td>
+                        <td><select th:field = "*{staffID}" id="staffID">
+                            <option th:each="staffID : ${staffIDs}" th:value="${staffID}" th:text="${staffID}"></option>
+                        </select>
+                        </td>
+                        <td><input type="number" min="0" th:field="*{basicSalary}"></td>
+                        <td><input type="date" th:field="*{applicableDate}"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" align="center"><input type="submit" value="Create" id="submit" onclick="validation(event)"></td>
+                    </tr>
+                </table>
+                <div class="error" th:text="${error}"></div>
+            </form>
+        </div>
+    <a href="./getSalary"><h2 style="text-align: center;">Back to Salary menu</h2></a>
+</body>
+</html>

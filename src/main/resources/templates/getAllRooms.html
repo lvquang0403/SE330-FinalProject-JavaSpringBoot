@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
+    <style>
+        h2{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1 style="text-align: center;">Room list</h1>
@@ -14,6 +19,7 @@
         <tr>
             <th width="100px">ID</th>
             <th width="300px">Name</th>
+            <th colspan="2">Action</th>
         </tr>
         <tr>
             <tr th:each="room: ${rooms}">
@@ -22,10 +28,11 @@
                 <td><form th:action="@{rooms/deleteRoom/{roomID} (roomID = ${room.roomID})}" method="POST">
                     <input type="submit" value="Delete" />
                 </form>
+                <td><a th:href="@{http://localhost:8080/rooms/editAtbOfRoom/{roomID} (roomID=${room.roomID})}">Edit Room</a></td>
             </tr>
         </tr>
     </table>
-    <td align="center" style="font-size: 20px;"><a href="rooms/insertRoom">Insert a new Room</a></td>
-    <a href=""><h2 style="text-align: center;">Back to menu</h2></a>
+    <h2><a href="insertRoom">Insert a new Room</a></h2>
+    <a href="./"><h2>Back to Home</h2></a>
 </body>
 </html>

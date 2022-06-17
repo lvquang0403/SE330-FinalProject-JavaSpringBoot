@@ -39,6 +39,7 @@
                         <td><form th:action="@{positions/deletePosition/{posID} (posID = ${position.posID})}" method="POST">
                             <input type="submit" value="Delete" />
                         </form>
+                        <td><a th:href="@{http://localhost:8080/positions/editAtbOfPosition/{posID} (posID=${position.posID})}">Edit Position</a></td>
                     </tr>
                 </tr>
             </table>
@@ -56,12 +57,12 @@
                         <td><input type="text" id="name_Pos" th:field="*{name_Pos}"></td>
                     </tr>
                     <tr>
-                        <td colspan="3" align="center"><input type="submit" value="Create" id="submit" onclick="validation(event)"></td>
+                        <td colspan="3" align="center"><input type="submit" value="Create" id="submit"></td>
                     </tr>
                 </table>
                 <div class="error" th:text="${error}"></div>
             </form>
         </div>
-    <a href=""><h2 tyle="text-align: center;">Back to menu</h2></a>
+    <a href="./"style="text-align: center;" ><h2>Back to menu</h2></a>
 </body>
 </html>

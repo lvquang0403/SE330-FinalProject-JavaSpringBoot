@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get all salary payments</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Salary Payments</h1>
+    <!-- <h1>Name = <span th:text="${name}"> </h1>
+    <h1>Age = <span th:text="${age}"> </h1> -->
+    <table style="text-align: center;" border="1" cellpadding="2" cellspacing="0" align="center">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Room</th>
+            <th>Position</th>
+            <th>Actually Received</th>
+            <th>Action</th>
+        </tr>
+        <tr align="center">
+            <tr th:each="salaryPay: ${results}">
+                <td th:text="${salaryPay.staffID}"></td>
+                <td th:text="${salaryPay.full_name}"></td>
+                <td th:text="${salaryPay.phone}"></td>
+                <td th:text="${salaryPay.name_room}"></td>
+                <td th:text="${salaryPay.name_Pos}"></td>
+                <td th:text="${#numbers.formatDecimal(salaryPay.actReceived,3,'POINT',2,'COMMA')}"></td>
+                <td><a th:href="@{http://localhost:8080/salaryPayment/getSalaryByStaffID/{staffID} (staffID=${salaryPay.staffID})}">Detail</a></td>
+            </tr>
+        </tr>
+        <tr>
+            <th>Summary</th>
+            <td colspan="6" th:text="${#numbers.formatDecimal(sumActReceived,3,'POINT',2,'COMMA')}"></td>
+            <!-- ${#numbers.formatDecimal(num,3,'POINT',2,'COMMA')} -->
+        </tr>
+    </table>
+    <a href="/salary/getSalary"><h2 style="text-align: center;">Back to menu</h2></a>
+</body>
+</html>

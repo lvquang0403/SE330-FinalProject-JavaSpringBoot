@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert new Staff</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <script>
+        function validateName(event) {
+            roomID = document.getElementById('degreeID');
+            value = roomID.value;
+            temp = (value.length==6);
+            if(!temp){
+                event.preventDefault();
+                alert("Number character of ID must equal 6 !!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1 style="text-align: center;">Insert new Degree</h1>
+    <form th:action="@{/degrees/insertDegree}" th:object="${degree}" method="POST">
+        <table align="center" border="1" cellpadding="2" cellspacing="0">
+            <tr>
+                <th width="100px">ID</th>
+                <th width="300px">StaffID</th>
+                <th>Major</th>
+                <th>University</th>
+                <th>Academic level</th>
+            </tr>
+            <tr>
+                <td><input type="text" th:field="*{degreeID}" id="degreeID"></td>
+                <td>
+                    <select th:field = "*{staffID}">
+                        <option th:each="staffID : ${staffIDs}" th:value="${staffID}" th:text="${staffID}"></option>
+                    </select>
+                </td>
+                <td><input type="text" th:field="*{name_major}"></td>
+                <td><input type="text" th:field="*{name_university}"></td>
+                <td><select th:field="*{academic_level}">
+                    <option value="1">University</option>
+                    <option value="2">College</option>
+                    <option value="3">Intermediate</option>
+                </select></td>
+            </tr>
+        </table>
+        <div  align="center"><input type="submit" value="Create" id="submit" onclick="validateName(event)"></div>
+    </form>
+    <div class="error" th:text="${error}"></div>
+    <div class="back-to-staffs" style="text-align: center; font-weight: bold; font-size: 20px;"><a href="http://localhost:8080/rooms">Back to Degree list Page</a></div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <h1 style="text-align: center;">Degrees list</h1>
+    <!-- <h1>Name = <span th:text="${name}"> </h1>
+    <h1>Age = <span th:text="${age}"> </h1> -->
+    <table align="center" border="1" cellpadding="2" cellspacing="0">
+        <tr>
+            <th width="100px">ID</th>
+            <th width="300px">StaffID</th>
+            <th>Major</th>
+            <th>University</th>
+            <th>Academic level</th>
+        </tr>
+        <tr>
+            <tr th:each="degree: ${degrees}">
+                <td th:text="${degree.degreeID}"></td>
+                <td th:text="${degree.staffID}"></td>
+                <td th:text="${degree.name_major}"></td>
+                <td th:text="${degree.name_university}"></td>
+                <td>
+                    <span th:if="${degree.academic_level} == '1'" th:text="University"> </span>
+                    <span th:if="${degree.academic_level} == '2'" th:text="College"> </span>
+                    <span th:if="${degree.academic_level} == '3'" th:text="Intermediate"> </span>
+                </td>
+                <td><a th:href="@{http://localhost:8080/degrees/editAtbOfDegree/{degreeID} (degreeID=${degree.degreeID})}">Edit Degree</a></td>
+                <td><form th:action="@{degrees/deleteDegree/{degreeID} (degreeID = ${degree.degreeID})}" method="POST">
+                    <input type="submit" value="Delete" />
+                </form>
+            </tr>
+        </tr>
+    </table>
+    <div class="navigate" style="text-align: center;">
+        <a href="degrees/insertDegree">Insert a new Degree</a>
+        <a href="./"><h2 style="text-align: center;">Back to menu</h2></a>
+    </div>
+</body>
+</html>

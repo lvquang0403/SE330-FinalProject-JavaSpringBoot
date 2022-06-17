@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff list</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Staff list</h1>
+    <!-- <h1>Name = <span th:text="${name}"> </h1>
+    <h1>Age = <span th:text="${age}"> </h1> -->
+    <table style="text-align: center;" border="1" cellpadding="2" cellspacing="0" align="center">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Birthday</th>
+            <th>Epx</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>PosID</th>
+            <th>RoomID</th>
+            <th></th>
+        </tr>
+        <tr align="center">
+            <tr th:each="staff: ${staffs}">
+                <td th:text="${staff.staffID}"></td>
+                <td th:text="${staff.full_name}"></td>
+                <td>
+                    <span th:if="${staff.gender} == 'true'" th:text="Female"> </span>
+                    <span th:unless="${staff.gender} == 'true'" th:text="Male"> </span>
+                </td>
+                <td th:text="${staff.bod}"></td>
+                <td th:text="${staff.experience}"></td>
+                <td th:text="${staff.adr}"></td>
+                <td th:text="${staff.phone}"></td>
+                <td th:text="${staff.posID}" ></td>
+                <td th:text="${staff.roomID}"></td>
+                <td><a th:href="@{http://localhost:8080/staffs/editAtbOfStaff/{staffID} (staffID=${staff.staffID})}">Edit Staff</a></td>
+                <td><form th:action="@{staffs/deleteStaff/{staffID} (staffID = ${staff.staffID})}" method="post">
+                    <input type="submit" value="Delete">
+                </form></td>
+            </tr>
+        </tr>
+    </table>
+    
+    <h2 style="text-align: center;"><a href="staffs/insertStaff">Insert new Staff</a></h2>
+    <h2 style="text-align: center;"><a href="../">Back to Home</a></h2>
+</body>
+</html>

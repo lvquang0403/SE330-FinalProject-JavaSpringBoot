@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface StaffRepository extends JpaRepository<Staff,String> {
     @Query(value = "select staffID from Staff")
@@ -22,7 +24,7 @@ public interface StaffRepository extends JpaRepository<Staff,String> {
     @Query(value = "insert into Staff(staffID, full_name, gender,bod,experience ,adr , phone, posID,roomID)"+
             " values (:staffID, :full_name, :gender, :bod, :experience, :adr, :phone, :posID, :roomID);",
             nativeQuery = true)
-    void    insertStaff(@Param("staffID") String staffID,
+    Iterable<Staff>    insertStaff(@Param("staffID") String staffID,
                         @Param("full_name") String full_name,
                         @Param("gender") boolean gender,
                         @Param("bod") Date bod,
@@ -32,4 +34,5 @@ public interface StaffRepository extends JpaRepository<Staff,String> {
                         @Param("posID") String posID,
                         @Param("roomID") String roomID
     );
+
 }

@@ -1,5 +1,6 @@
 package com.project.WebApp.controller;
 
+import com.project.WebApp.model.Degree;
 import com.project.WebApp.model.Position;
 import com.project.WebApp.repository.PositionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.rmi.MarshalledObject;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "positions")
@@ -57,4 +59,35 @@ public class PositionController {
         positionRepository.deleteById(posID);
         return "redirect:/positions";
     }
+
+    //edit any attribute of a Position
+    //https:localhost:8080/positions/editAtbOfPosition/
+    @RequestMapping(value = "/editAtbOfPosition/{posID}", method = RequestMethod.GET)
+    public String editAtbOfDegree(ModelMap modelMap, @PathVariable String posID) {
+        Optional<Position> position = positionRepository.findById(posID);
+        modelMap.addAttribute("position", position.get());
+        return "editAtbOfPosition";
+    }
+
+    //handle request update  a Position
+    @RequestMapping(value = "/updateAtbOfPosition/{posID}", method = RequestMethod.POST)
+    public String editAtbOfDegree(@ModelAttribute("position") Position position,
+                                  @PathVariable String posID,
+                                  ModelMap modelMap) {
+        if(positionRepository.findById(posID).isPresent()) {
+            Position foundPosition = positionRepository.findById(posID).get();
+            if (!position.getPosID().trim().isEmpty()) {
+                foundPosition.setPosID(position.getPosID());
+            }
+            if (!position.getName_Pos().trim().isEmpty()) {
+                foundPosition.setName_Pos(position.getName_Pos());
+            }
+
+            positionRepository.save(foundPosition);
+
+        }
+        //back to Degrees lists
+        return "redirect:../";
+    }
+
 }

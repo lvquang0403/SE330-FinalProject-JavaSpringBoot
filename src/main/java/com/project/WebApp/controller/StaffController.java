@@ -34,7 +34,7 @@ public class StaffController {
         //sent data from controller to view
 //        modelMap.addAttribute("name","quang");
 //        modelMap.addAttribute("age",21);
-        return "index";
+        return "getAllStaffs";
     }
     //return all staffs in a room by roomID
     //https:localhost:8080/staffs/getAllStaffByRoomID/{roomID}
@@ -58,7 +58,7 @@ public class StaffController {
     public String insertStaff(@ModelAttribute Staff staff,
                               ModelMap modelMap) {
         if (!staffRepository.findById(staff.getStaffID()).isPresent()) {
-            staffRepository.insertStaff(staff.getStaffID(),
+            staffRepository.save(new Staff(staff.getStaffID(),
                     staff.getFull_name(),
                     staff.isGender(),
                     staff.getBod(),
@@ -66,9 +66,13 @@ public class StaffController {
                     staff.getAdr(),
                     staff.getPhone(),
                     staff.getPosID(),
-                    staff.getRoomID());
-            return "redirect:../";
+                    staff.getRoomID()));
+            return "redirect:./";
         } else {
+            modelMap.addAttribute("rooms",roomRepository.findAll());
+            modelMap.addAttribute("positions",positionRepository.findAll());
+            modelMap.addAttribute("staff", new Staff());
+            modelMap.addAttribute("error","staffID already exits !!");
             return "insertStaff";
         }
     }

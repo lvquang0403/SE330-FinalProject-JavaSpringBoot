@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Update attributes of Room : <span th:text="${room.roomID}"></span></h1>
+    <form th:action="@{../updateAtbOfRoom/{roomID} (roomID =${room.roomID})}" th:object="${room}" method="POST">
+        <table align="center" cellspacing="0" cellpadding="2" border="1">
+            <tr>
+                <th>ID</th>
+                <th>Name Room</th>
+            </tr>
+            <tr>
+                <td><input type="text" th:field="*{roomID}" id="roomID"></td>
+                <td><input type="text" th:field="*{name_room}"></td>
+            </tr>
+            <tr>
+                <td colspan="10" id="notify"></td>
+            </tr>
+        </table>
+        <div align="center" style="margin: 15px;"><input type="submit" value="Update" id="submit"></div>
+    </form>
+    <div class="back-to-staffs" align="center" style="font-size: 20px; font-weight: bold;"><a href="http://localhost:8080/rooms">Back to Room list Page</a></div>
+</body>
+</html>

@@ -1,16 +1,16 @@
 package com.project.WebApp.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "SalaryPayment")
 public class SalaryPayment {
     @Id
     @Column(name = "salaryPayID")
-    private String salaryPayID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long salaryPayID;
     private String staffID;
     private String salaryID;
     private String timeshID;
@@ -19,9 +19,27 @@ public class SalaryPayment {
     private Double insurance;
     private Double bonus;
     private Double actReceived;
+    //calculation SalaryPayment from timesheet and salary
+    public static final SalaryPayment calSalaryPayment(Timesheets timesheets, Salary salary) {
+        Double bonus = 0.0;
+        Double insurance = salary.getBasicSalary()*0.05;
+        if (timesheets.getDay_off()==0){
+            bonus = 2000000.0;
+        }
+        return new SalaryPayment(salary.getStaffID(),
+                salary.getSalaryID(),
+                timesheets.getTimeshID(),
+                timesheets.getMon(),
+                timesheets.getYea(),
+                insurance,
+                bonus,
+                salary.getBasicSalary() - insurance + bonus
+        );
+    }
 
-    public SalaryPayment(String salaryPayID, String staffID, String salaryID, String timeshID, int mon, int yea, Double insurance, Double bonus, Double actReceived) {
-        this.salaryPayID = salaryPayID;
+    // format actually
+//    public static final formatActually
+    public SalaryPayment(String staffID, String salaryID, String timeshID, int mon, int yea, Double insurance, Double bonus, Double actReceived) {
         this.staffID = staffID;
         this.salaryID = salaryID;
         this.timeshID = timeshID;
@@ -35,12 +53,8 @@ public class SalaryPayment {
     public SalaryPayment() {
     }
 
-    public String getSalaryPayID() {
+    public Long getSalaryPayID() {
         return salaryPayID;
-    }
-
-    public void setSalaryPayID(String salaryPayID) {
-        this.salaryPayID = salaryPayID;
     }
 
     public String getStaffID() {

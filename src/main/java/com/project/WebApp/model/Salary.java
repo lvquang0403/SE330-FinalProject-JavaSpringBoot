@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Date;
 
 @Entity
 @Table(name = "Salary")
@@ -13,14 +14,24 @@ public class Salary {
     private String salaryID;
     private String staffID;
     private Double basicSalary;
+    private Date applicableDate;
 
-    public Salary(String salaryID, String staffID, Double basicSalary) {
+    public Salary(String salaryID, String staffID, Double basicSalary, Date applicableDate) {
         this.salaryID = salaryID;
         this.staffID = staffID;
         this.basicSalary = basicSalary;
+        this.applicableDate = applicableDate;
     }
 
     public Salary() {
+    }
+
+    public Date getApplicableDate() {
+        return applicableDate;
+    }
+
+    public void setApplicableDate(Date applicableDate) {
+        this.applicableDate = applicableDate;
     }
 
     public String getSalaryID() {
