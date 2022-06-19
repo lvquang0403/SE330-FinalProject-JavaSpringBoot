@@ -5,13 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff list</title>
+    <style>
+        body{
+            background-color: aqua;
+        }
+    </style>
 </head>
 <body>
     <h1 style="text-align: center;">Staff list</h1>
     <!-- <h1>Name = <span th:text="${name}"> </h1>
     <h1>Age = <span th:text="${age}"> </h1> -->
-    <table style="text-align: center;" border="1" cellpadding="2" cellspacing="0" align="center">
-        <tr>
+    <table style="text-align: center; background-color: #EEEEEE;" border="1" cellpadding="2" cellspacing="0" align="center">
+        <tr style="background-color: black; color: #EEEEEE;">
             <th>ID</th>
             <th>Name</th>
             <th>Gender</th>
@@ -21,6 +26,7 @@
             <th>Phone</th>
             <th>PosID</th>
             <th>RoomID</th>
+            <th></th>
             <th></th>
         </tr>
         <tr align="center">

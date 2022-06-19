@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert new Staff</title>
     <style>
+        body{
+            background-color: aqua;
+        }
         .error {
             color: red;
         }
@@ -25,8 +28,8 @@
 <body>
     <h1 style="text-align: center;">Insert new Room</h1>
     <form th:action="@{/rooms/insertRoom}" th:object="${room}" method="POST">
-        <table align="center" border="1" cellpadding="2" cellspacing="0">
-            <tr>
+        <table align="center" border="1" cellpadding="2" cellspacing="0" style="background-color: #EEEEEE;">
+            <tr style="background-color: black; color: #EEEEEE;">
                 <th>RoomID</th>
                 <th>Name Room</th>
             </tr>
