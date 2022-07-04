@@ -112,4 +112,10 @@ public class SalaryPaymentController {
         return "listSalaryPayments";
     }
 
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    public String getAll(ModelMap modelMap){
+        modelMap.addAttribute(modelMap.addAttribute("results", salaryPayRepository.findAll()));
+        return"allSalaryPay";
+    }
+
 }

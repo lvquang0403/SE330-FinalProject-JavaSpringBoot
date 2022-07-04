@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get all salary payments</title>
+    <style>
+        body{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Salary Payments</h1>
+    <!-- <h1>Name = <span th:text="${name}"> </h1>
+    <h1>Age = <span th:text="${age}"> </h1> -->
+    <table style="text-align: center; background-color: #EEEEEE;" border="1" cellpadding="2" cellspacing="0" align="center">
+        <tr style="background-color: black; color: #EEEEEE;">
+            <th>ID</th>
+            <th>staffID</th>
+            <th>salaryID</th>
+            <th>timeID</th>
+            <th>mon</th>
+            <th>yea</th>
+            <th>insurance</th>
+            <th>bonus</th>
+            <th>actReceived</th>
+        </tr>
+        <tr align="center">
+            <tr th:each="salaryPay: ${results}">
+                <td th:text="${salaryPay.salaryPayID}"></td>
+                <td th:text="${salaryPay.staffID}"></td>
+                <td th:text="${salaryPay.salaryID}"></td>
+                <td th:text="${salaryPay.timeshID}"></td>
+                <td th:text="${salaryPay.mon}"></td>
+                <td th:text="${salaryPay.yea}"></td>
+                <td th:text="${salaryPay.insurance}"></td>
+                <td th:text="${#numbers.formatDecimal(salaryPay.bonus,3,'POINT',2,'COMMA')}"></td>
+                <td th:text="${#numbers.formatDecimal(salaryPay.actReceived,3,'POINT',2,'COMMA')}"></td>
+            </tr>
+        </tr>
+    </table>
+    <a href="/salary/getSalary"><h2 style="text-align: center;">Back to menu</h2></a>
+</body>
+</html>

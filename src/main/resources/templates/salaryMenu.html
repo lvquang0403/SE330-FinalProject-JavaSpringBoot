@@ -69,7 +69,7 @@
                         </select><br>
                         <div id="submit-op-2"></div>
                     </div>
-                    <div id="content-menu-op-3" style="display: none;">
+                    <div id="content-menu-op-3" style="display: none;" onchange="addInput()">
                         <h2>Get by RoomID</h2>
                         <select id="option-roomID">
                             <option th:each="roomID : ${roomIDs}" th:value="${roomID}" th:text="${roomID}"></option>

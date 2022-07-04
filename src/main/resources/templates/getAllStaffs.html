@@ -42,7 +42,7 @@
                 <td th:text="${staff.adr}"></td>
                 <td th:text="${staff.phone}"></td>
                 <td th:text="${staff.posID}" ></td>
-                <td th:text="${staff.roomID}"></td>
+                <td><a th:href="@{http://localhost:8080/staffs/getAllStaffByRoomID/{roomID} (roomID=${staff.roomID})}" th:text="${staff.roomID}"></a></td>
                 <td><a th:href="@{http://localhost:8080/staffs/editAtbOfStaff/{staffID} (staffID=${staff.staffID})}">Edit Staff</a></td>
                 <td><form th:action="@{staffs/deleteStaff/{staffID} (staffID = ${staff.staffID})}" method="post">
                     <input type="submit" value="Delete">
